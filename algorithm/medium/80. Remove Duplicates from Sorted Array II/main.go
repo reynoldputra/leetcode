@@ -1,23 +1,22 @@
 func removeDuplicates(nums []int) int {
-    i := 101
-    c := 0
-    t := 0
-    
-    for idx, v := range nums {
-        fmt.Println(idx, v, i, t, c)
-        if v == i {
-            if t < 2  {
-                nums[c] = v
-                c += 1
-                t += 1
-            }
+    k := 1
+
+    if len(nums) < 2 {
+        return len(nums)
+    }
+
+    for i := 2; i < len(nums) ; i ++ {
+        if nums[i] == nums[k] {
+            if nums[k] != nums[k-1] {
+                k += 1
+                nums[k] = nums[i]
+            } 
+            continue
         } else {
-            nums[c] = v
-            c += 1
-            i = v
-            t = 1
+            k += 1
+            nums[k] = nums[i]
         }
     }
 
-    return c
+    return k+1
 }
