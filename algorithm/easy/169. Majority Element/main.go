@@ -1,19 +1,19 @@
 func majorityElement(nums []int) int {
-    // the key is n / 2
-    c := 1
-    n := nums[0]
+    i := 0
+    j := 0
 
-    for i := 1; i < len(nums); i++ {
-        if nums[i] == n {
-            c += 1
+    for _,v := range(nums) {
+        if i == v {
+            j++
         } else {
-            c -= 1
-            if c == 0 {
-                n = nums[i]
-                c = 1
-            } 
+            if j == 0 {
+                j ++
+                i = v
+            } else {
+                j --
+            }
         }
     }
 
-    return n
+    return i
 }
